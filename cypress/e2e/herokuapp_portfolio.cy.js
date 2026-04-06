@@ -54,4 +54,13 @@ describe('Portfolio QA Automation - The Iternet HerokuApp', () => {
     cy.get('input[type="checkbox"]').first().check().should('be.checked')
     cy.get('input[type="checkbox"]').last().should('be.checked')
   })
+
+  it('Skenario 4 : Upload File', () => {
+    cy.contains('File Upload').click()
+    const fileName = 'contoh_file.jpg'
+    cy.get('#file-upload').selectFile(`cypress/fixtures/${fileName}`)
+    cy.get('#file-submit').click()
+    cy.get('h3').should('have.text', 'File Uploaded!')
+    cy.get('#uploaded-files').should('contain', fileName)
+  })
 })
