@@ -47,4 +47,11 @@ describe('Portfolio QA Automation - The Iternet HerokuApp', () => {
       .and('contain', 'Hello World!')
   }) 
 
+  it('Skenario 3: Checkboxes (Interaksi Elemen UI)', () => {
+    cy.contains('Checkboxes').click()
+    
+    // Centang checkbox pertama, pastikan checkbox kedua sudah tercentang
+    cy.get('input[type="checkbox"]').first().check().should('be.checked')
+    cy.get('input[type="checkbox"]').last().should('be.checked')
+  })
 })
