@@ -1,3 +1,4 @@
+import LoginPage from '../pages/herokuapp/LoginPage'; // Tambahkan di baris paling atas
 describe('Portfolio QA Automation - The Iternet HerokuApp', () => {
   // Perintah ini agar Cypress mengabaikan error dari website aslinya
   Cypress.on('uncaught:exception', (err, runnable) => {
@@ -6,35 +7,27 @@ describe('Portfolio QA Automation - The Iternet HerokuApp', () => {
 
   beforeEach(() => {
     // Pergi ke website utama sebelum setiap tes dimulai
-    cy.visit('https://the-internet.herokuapp.com/')
+    LoginPage.visit();
+    cy.fixture('users').as('userData');
   })
 
-  it('Skenario 1.a : Login Form Authentication Success', () => {
-    // Klik link 'Form Authentication' menggunakan teks agar lebih stabil
-    cy.contains('Form Authentication').click()
-    
-    // Proses login
-    cy.get('#username').type('tomsmith')
-    cy.get('#password').type('SuperSecretPassword!')
-    cy.get('button[type="submit"]').click()
-    
-    // Assertion (Pengecekan)
-    cy.get('#flash').should('be.visible').and('contain', 'You logged into a secure area!')
-    cy.url().should('include', '/secure')
-  })
+  it('Skenario 1.a : Login Success menggunakan Data JSON', function() {
+      LoginPage.clickLoginForm();
+      LoginPage.submitLogin(this.userData.validUser.username, this.userData.validUser.password);
+      
+      // Assertion (Pengecekan)
+      LoginPage.messageAlert.should('be.visible')
+          .and('contain', 'You logged into a secure area!');
+  });
 
-  it('Skenario 1.b : Login Form Authentication Error', () => {
-    // Klik link 'Form Authentication' menggunakan teks agar lebih stabil
-    cy.contains('Form Authentication').click()
-    
-    // Proses login
-    cy.get('#username').type('may')
-    cy.get('#password').type('maimai')
-    cy.get('button[type="submit"]').click()
-    
-    // Assertion (Pengecekan)
-    cy.get('#flash').should('be.visible').and('contain', 'Your username is invalid!')
-  })
+  it('Skenario 1.b : Login Error menggunakan Data JSON', function() {
+      LoginPage.clickLoginForm();
+      LoginPage.submitLogin(this.userData.invalidUser.username, this.userData.invalidUser.password);
+      
+      // Assertion (Pengecekan)
+      LoginPage.messageAlert.should('be.visible')
+          .and('contain', 'Your username is invalid!');
+  });
 
   it('Skenario 2 : Dynamic Loading', () => {
     cy.contains('Dynamic Loading').click()
