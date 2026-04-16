@@ -31,25 +31,13 @@ Data Management: JSON Fixtures – terlihat pada folder fixtures/
 Version Control: Git & GitHub
 
 
-📂 Project Structure
-Struktur folder diatur agar scalable dan mudah dipelihara:
-
-Plaintext
-cypress/
-├── e2e/              # Kumpulan file test script (.cy.js)
-├── fixtures/         # Data statis (JSON) untuk testing input
-├── pages/            # Page Object Model (POM) untuk abstraksi elemen UI
-├── support/          # Custom commands dan konfigurasi global
-└── cypress.config.js # Konfigurasi utama Cypress
 ⚙️ Cara Menjalankan Project
 1. Clone repositori ini:
 git clone https://github.com/mayfransisca01/cypress-portfolio.git
 
-3. Install dependencies:
+2. Install dependencies:
 npm install
-
-3.Buka Cypress Runner:
+3. Buka Cypress Runner:
 npx cypress open
 Atau jalankan via terminal (headless mode):
-
 npx cypress run
