@@ -44,9 +44,12 @@ cypress/
 ⚙️ Cara Menjalankan Project
 1. Clone repositori ini:
 git clone https://github.com/mayfransisca01/cypress-portfolio.git
-2. Install dependencies:
+
+3. Install dependencies:
 npm install
+
 3.Buka Cypress Runner:
 npx cypress open
 Atau jalankan via terminal (headless mode):
+
 npx cypress run
