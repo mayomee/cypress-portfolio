@@ -33,7 +33,7 @@ Version Control: Git & GitHub
 
 ⚙️ Cara Menjalankan Project
 1. Clone repositori ini:
-git clone https://github.com/mayfransisca01/cypress-portfolio.git
+git clone https://github.com/mayomee/cypress-portfolio.git
 
 2. Install dependencies:
 npm install
